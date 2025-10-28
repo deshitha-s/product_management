@@ -33,9 +33,10 @@ public class ProductController {
         return ResponseEntity.ok(service.searchProductsByCategory(category));
     }
 
-    @DeleteMapping("/{name}")
-    public ResponseEntity<String> deleteByName(@PathVariable String name) {
-        service.deleteProductByName(name);
-        return ResponseEntity.ok("Product deleted successfully: " + name);
-    }
+    @DeleteMapping("/{productName}")
+public ResponseEntity<String> deleteByName(@PathVariable("productName") String productName) {
+    service.deleteProductByName(productName);
+    return ResponseEntity.ok("Product deleted successfully: " + productName);
+}
+
 }

@@ -33,8 +33,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProductByName(String name) {
-        repository.deleteByProductNameIgnoreCase(name);
-    }
+    Product product = repository.findByProductNameIgnoreCase(name)
+        .orElseThrow(() -> new RuntimeException("Product not found: " + name));
+    repository.delete(product);
+ }
+
 
     private Product mapToEntity(ProductDTO dto) {
         Product product = new Product();
